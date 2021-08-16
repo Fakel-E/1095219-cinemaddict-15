@@ -18,16 +18,10 @@ const renderComment = ({emoji, text, author, date}) => (
     </li>`
 );
 
-const renderFilmControlsTeamplate = (list, history, favorit) => (
-  `<input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist"
-  ${list ? 'checked' : ''}>
-  <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
-  <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched"
-  ${history ? 'checked' : ''}>
-  <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
-  <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite"
-  ${favorit ? 'checked' : ''}>
-  <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>`
+const renderFilmControlsTeamplate = () => (
+  `<button type="button" class="film-details__control-button film-details__control-button--watchlist" id="watchlist" name="watchlist">Add to watchlist</button>
+    <button type="button" class="film-details__control-button film-details__control-button--active film-details__control-button--watched" id="watched" name="watched">Already watched</button>
+    <button type="button" class="film-details__control-button film-details__control-button--favorite" id="favorite" name="favorite">Add to favorites</button>`
 );
 
 export const createPopupTemplate = (film) => {
@@ -39,7 +33,7 @@ export const createPopupTemplate = (film) => {
   return (
     `<section class="film-details">
     <form class="film-details__inner" action="" method="get">
-      <div class="form-details__top-container">
+      <div class="film-details__top-container">
         <div class="film-details__close">
           <button class="film-details__close-btn" type="button">close</button>
         </div>
@@ -99,7 +93,8 @@ export const createPopupTemplate = (film) => {
         ${renderFilmControlsTeamplate(isWatchlist, isWatched, isFavorite)}
         </section>
       </div>
-      <div class="form-details__bottom-container">
+
+      <div class="film-details__bottom-container">
         <section class="film-details__comments-wrap">
           <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">4</span></h3>
           <ul class="film-details__comments-list">

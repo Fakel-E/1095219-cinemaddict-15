@@ -65,6 +65,8 @@ const FILM_GENRES = [
 
 const generateDescription = () => mixArray(FILM_DESCRIPTIONS);
 
+const generateRandomValue = () => Boolean(getRandomInteger(0, 1));
+
 export const generateFilm = () => ({
   name: generateRandom(FILM_NAME),
   originalName: generateRandom(FILM_NAME),
@@ -80,8 +82,7 @@ export const generateFilm = () => ({
   genre: mixArray(FILM_GENRES),
   ageLimit: getRandomInteger(0, 18),
   comments: new Array(getRandomInteger(1, 5)).fill('').map(generateComment),
-  all: true,
-  isWatchlist: Boolean(getRandomInteger(0, 1)),
-  isWatched: Boolean(getRandomInteger(0, 1)),
-  isFavorite: Boolean(getRandomInteger(0, 1)),
+  isWatchlist: generateRandomValue(),
+  isWatched: generateRandomValue(),
+  isFavorite: generateRandomValue(),
 });

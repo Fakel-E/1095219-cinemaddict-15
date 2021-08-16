@@ -4,7 +4,7 @@ const filmToFilterMap = {
   history: (films) => films.filter((film) => film.isWatched).length,
   favorites: (films) => films.filter((film) => film.isFavorite).length,
 };
-// ! почитать про классы и деструктуризацию в js
+
 export const generateFilter = (films) => Object.entries(filmToFilterMap).map(([filterName, countFilms]) => ({
   name: filterName,
   count: countFilms(films),

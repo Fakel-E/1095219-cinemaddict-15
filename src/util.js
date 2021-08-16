@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
 
+const MAX_DAYS_GAP = 7;
+
 export const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -23,8 +25,7 @@ export const mixArray = function (massive) {
 export const generateRandom = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 export const generateDate = () => {
-  const maxDaysGap = 7;
-  const daysGap = getRandomInteger(-maxDaysGap, maxDaysGap);
+  const daysGap = getRandomInteger(-MAX_DAYS_GAP, MAX_DAYS_GAP);
   return dayjs().add(daysGap, 'day').toDate();
 };
 
