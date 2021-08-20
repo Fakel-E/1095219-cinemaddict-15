@@ -60,7 +60,6 @@ const FILM_GENRES = [
   'Drama',
   'Film-Noir',
   'Mystery',
-  'Fantastic',
 ];
 
 const generateDescription = () => mixArray(FILM_DESCRIPTIONS);

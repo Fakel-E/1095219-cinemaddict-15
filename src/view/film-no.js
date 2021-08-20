@@ -1,12 +1,12 @@
 import {createElement} from '../utils';
 
-export default class Statistic {
+export default class NoFilm {
   constructor() {
     this._element = null;
   }
 
   getTemplate() {
-    return '<p>130 291 movies inside</p>';
+    return '<section class="films-list"> <h2 class="films-list__title">There are no movies in our database</h2> </section>';
   }
 
   getElement() {
