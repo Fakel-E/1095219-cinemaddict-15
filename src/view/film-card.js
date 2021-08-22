@@ -1,5 +1,5 @@
-import {humanizeDate} from '../utils';
-import {createElement} from '../utils';
+import {humanizeDate} from '../utils/date';
+import AbstractView from './abstract.js';
 
 const createFilmCard = (film) => {
   const {name, poster, description, rate, date, runtime, genre, isWatchlist, isWatched, isFavorite} = film;
@@ -28,25 +28,13 @@ const createFilmCard = (film) => {
   );
 };
 
-export default class FilmCard {
+export default class FilmCard extends AbstractView {
   constructor(films) {
+    super();
     this._films = films;
-    this._element = null;
   }
 
   getTemplate() {
     return createFilmCard(this._films);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

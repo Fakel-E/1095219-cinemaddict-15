@@ -1,7 +1,7 @@
-import {getRandomInteger} from '../utils';
-import {mixArray} from '../utils';
-import {generateRandom} from '../utils';
-import {generateDate} from '../utils';
+import {getRandomInteger} from '../utils/common';
+import {mixArray} from '../utils/common';
+import {generateRandom} from '../utils/common';
+import {generateDate} from '../utils/date';
 import {generateComment} from '../mock/comment';
 
 const FILM_NAME = [
