@@ -1,6 +1,6 @@
-import {humanizeDate} from '../utils';
-import {humanizeDateComment} from '../utils';
-import {createElement} from '../utils';
+import {humanizeDate} from '../utils/date';
+import {humanizeDateComment} from '../utils/date';
+import AbstractView from './abstract.js';
 
 
 const renderComment = ({emoji, text, author, date}) => (
@@ -149,25 +149,23 @@ const createPopupTemplate = (film) => {
   );
 };
 
-export default class Popup {
+export default class Popup extends AbstractView {
   constructor(films) {
+    super();
     this._films = films;
-    this._element = null;
   }
 
   getTemplate() {
     return createPopupTemplate(this._films);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
+  _clickHandler(evt) {
+    evt.preventDefault();
+    this._callback.click();
   }
 
-  removeElement() {
-    this._element = null;
+  setClickHandler(callback) {
+    this._callback.click = callback;
+    this.getElement().addEventListener('click', this._clickHandler);
   }
 }
