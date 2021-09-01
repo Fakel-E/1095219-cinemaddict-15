@@ -1,6 +1,6 @@
-import {getRandomInteger} from '../utils/common';
-import {mixArray} from '../utils/common';
-import {generateRandom} from '../utils/common';
+import {getRandomInteger} from '../utils/comon';
+import {mixArray} from '../utils/comon';
+import {generateRandom} from '../utils/comon';
 import {generateDate} from '../utils/date';
 import {generateComment} from '../mock/comment';
 
@@ -62,11 +62,14 @@ const FILM_GENRES = [
   'Mystery',
 ];
 
+let filmId = 0;
+
 const generateDescription = () => mixArray(FILM_DESCRIPTIONS);
 
 const generateRandomValue = () => Boolean(getRandomInteger(0, 1));
 
 export const generateFilm = () => ({
+  id: filmId++,
   name: generateRandom(FILM_NAME),
   originalName: generateRandom(FILM_NAME),
   poster: generateRandom(FILM_POSTER),

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import {getRandomInteger} from './common.js';
+import {getRandomInteger} from './comon.js';
 
 const MAX_DAYS_GAP = 7;
 
