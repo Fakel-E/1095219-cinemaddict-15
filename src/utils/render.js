@@ -60,32 +60,31 @@ export const remove = (component) => {
   component.removeElement();
 };
 
-export const selectRateFilm = (array) => {
-  const sortRate = (prev, next) => {
-    if (prev.rate > next.rate) {
-      return -1;
-    } else if (prev.rate === next.rate) {
-      return 0;
-    } else if (prev.rate < next.rate) {
-      return 1;
-    }
-  };
+const sortByRating = (prev, next) => {
+  //next.rate - prev.rate;
 
-  const cloneArr = array.slice();
-  return cloneArr.sort(sortRate);
+  if (prev.rate > next.rate) {
+    return -1;
+  } else if (prev.rate < next.rate) {
+    return 1;
+  } else {
+    return 0;
+  }
 };
 
-export const selectCommentFilm = (array) => {
-  const sortRate = (prev, next) => {
-    if (prev.comments.lenght > next.comments.lenght) {
-      return -1;
-    } else if (prev.comments.lenght === next.comments.lenght) {
-      return 0;
-    } else if (prev.comments.lenght < next.comments.lenght) {
-      return 1;
-    }
-  };
+const sortByNumberComment = (prev, next) => {
+  //next.comments.lenght - prev.comments.lenght;
 
-  const cloneArr = array.slice();
-  return cloneArr.sort(sortRate);
+  if (prev.comments.lenght > next.comments.lenght) {
+    return -1;
+  } else if (prev.comments.lenght < next.comments.lenght) {
+    return 1;
+  } else {
+    return 0;
+  }
 };
+
+export const selectRatedFilms = (items) => items.slice().sort(sortByRating);
+
+export const selectCommentFilm = (items) => items.slice().sort(sortByNumberComment);
+

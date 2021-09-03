@@ -2,7 +2,7 @@ import {getRandomInteger} from '../utils/comon';
 import {mixArray} from '../utils/comon';
 import {generateRandom} from '../utils/comon';
 import {generateDate} from '../utils/date';
-import {generateComment} from '../mock/comment';
+import {generateComment} from './comment';
 
 const FILM_NAME = [
   'Begin',

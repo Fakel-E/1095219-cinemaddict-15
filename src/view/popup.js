@@ -19,10 +19,10 @@ const renderComment = ({emoji, text, author, date}) => (
     </li>`
 );
 
-const renderFilmControlsTeamplate = (list, history, favorit) => (
+const renderFilmControlsTemplate = (list, history, favorite) => (
   `<button type="button" class="film-details__control-button ${list ? 'film-details__control-button--active' : ''} film-details__control-button--watchlist" id="watchlist" name="watchlist">Add to watchlist</button>
     <button type="button" class="film-details__control-button ${history ? 'film-details__control-button--active' : ''} film-details__control-button--watched" id="watched" name="watched">Already watched</button>
-    <button type="button" class="film-details__control-button ${favorit ? 'film-details__control-button--active' : ''} film-details__control-button--favorite" id="favorite" name="favorite">Add to favorites</button>`
+    <button type="button" class="film-details__control-button ${favorite ? 'film-details__control-button--active' : ''} film-details__control-button--favorite" id="favorite" name="favorite">Add to favorites</button>`
 );
 
 const createPopupTemplate = (film) => {
@@ -108,7 +108,7 @@ const createPopupTemplate = (film) => {
           </div>
         </div>
         <section class="film-details__controls">
-        ${renderFilmControlsTeamplate(isWatchlist, isWatched, isFavorite)}
+        ${renderFilmControlsTemplate(isWatchlist, isWatched, isFavorite)}
         </section>
       </div>
 

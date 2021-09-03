@@ -6,7 +6,7 @@ import ButtonMoreView from '../view/button-more.js';
 import FilmCardPresenter from '../presenter/film-card.js';
 import TopRatedView from '../view/top-rate.js';
 import TopCommentView from '../view/top-comment.js';
-import {render, remove, selectRateFilm, selectCommentFilm} from '../utils/render.js';
+import {render, remove, selectRatedFilms, selectCommentFilm} from '../utils/render.js';
 import { updateItemById } from '../utils/comon.js';
 
 const FILM_PER_STEP = 5;
@@ -28,11 +28,9 @@ export default class FilmList {
     this._handleFilmChange = this._handleFilmChange.bind(this);
     this._handleModeChange = this._handleModeChange.bind(this);
 
-    this._filmCardPresenter = {};
-    this._topFilmPresenter = {};
-    this._commentFilmPresenter = {};
-
-    //this._presenterElements = [this._filmCardPresenter, this._topFilmPresenter,  this._commentFilmPresenter];
+    this._filmCardPresenterStorage  = {};
+    this._topRateFilmPresenterStorage = {};
+    this._topCommentFilmPresenterStorage = {};
   }
 
   init(films) {
@@ -46,14 +44,11 @@ export default class FilmList {
   }
 
   _handleModeChange() {
-    Object
-      .values(this._filmCardPresenter)
-      .forEach((presenter) => presenter.resetView());
-    Object
-      .values(this._topFilmPresenter)
-      .forEach((presenter) => presenter.resetView());
-    Object
-      .values(this._commentFilmPresenter)
+    [
+      ...Object.values(this._filmCardPresenterStorage),
+      ...Object.values(this._topRateFilmPresenterStorage),
+      ...Object.values(this._topCommentFilmPresenterStorage),
+    ]
       .forEach((presenter) => presenter.resetView());
   }
 
@@ -67,21 +62,21 @@ export default class FilmList {
   _renderFilms(from, to) {
     this._films
       .slice(from, to)
-      .forEach((film) => this._renderFilmCard(film, this._allFilmsListView, this._filmCardPresenter));
+      .forEach((film) => this._renderFilmCard(film, this._allFilmsListView, this._filmCardPresenterStorage));
   }
 
   _renderTopFilms(from, to) {
 
-    selectRateFilm(this._films)
+    selectRatedFilms(this._films)
       .slice(from, to)
-      .forEach((film) => this._renderFilmCard(film, this._topRatedView.getContainer(), this._topFilmPresenter));
+      .forEach((film) => this._renderFilmCard(film, this._topRatedView.getContainer(), this._topRateFilmPresenterStorage));
   }
 
   _renderCommentFilms(from, to) {
 
     selectCommentFilm(this._films)
       .slice(from, to)
-      .forEach((film) => this._renderFilmCard(film, this._topCommentView.getContainer(), this._commentFilmPresenter));
+      .forEach((film) => this._renderFilmCard(film, this._topCommentView.getContainer(), this._topCommentFilmPresenterStorage));
   }
 
   _renderNoFilms() {

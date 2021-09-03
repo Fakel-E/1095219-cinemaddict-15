@@ -1,4 +1,3 @@
-
 import {generateRandom} from '../utils/comon';
 import {generateDate} from '../utils/date';
 

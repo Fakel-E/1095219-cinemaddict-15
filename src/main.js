@@ -4,39 +4,25 @@ import SortMenuView from './view/sort-menu.js';
 import StatisticView from './view/statistic.js';
 import FilmListPresenter from './presenter/film-list.js';
 import {generateFilm} from './mock/film.js';
-// import {generateComment} from './mock/comment.js';
 import {generateFilter} from './mock/filter.js';
 import {render, RenderPosition} from './utils/render.js';
 
 const {BEFOREEND} = RenderPosition;
 
 const FILM_COUNT = 20;
-//const FILM_TOP = 2;
 
 const films = new Array(FILM_COUNT).fill('').map(generateFilm);
 const filters = generateFilter(films);
 
 const siteHeaderElement = document.querySelector('.header');
 const siteMainElement = document.querySelector('.main');
-//const siteFooterElement = document.querySelector('.footer');
 const siteStatisticElement = document.querySelector('.footer__statistics');
 
 render(siteHeaderElement, new ProfileView(), BEFOREEND);
 render(siteMainElement, new SiteMenuView(filters), BEFOREEND);
 render(siteMainElement, new SortMenuView(), BEFOREEND);
 const filmPresenter = new FilmListPresenter(siteMainElement);
-//const filmCardPresenter = new FilmCardPresenter(siteMainElement);
 filmPresenter.init(films);
-
-//const arrTopElement = document.querySelectorAll('.films-list--extra');
-
-/*arrTopElement.forEach((topElementsContainer) => {
-  const topFilmContainer = topElementsContainer.querySelector('.films-list__container');
-  for (let k = 0; k < FILM_TOP; k++) {
-    //filmCardPresenter.init(films[k]);
-    render(topFilmContainer, films[k]);
-  }
-});*/
 
 render(siteStatisticElement, new StatisticView(FILM_COUNT), BEFOREEND);
 
