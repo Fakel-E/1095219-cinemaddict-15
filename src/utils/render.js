@@ -60,29 +60,9 @@ export const remove = (component) => {
   component.removeElement();
 };
 
-const sortByRating = (prev, next) => {
-  //next.rate - prev.rate;
+const sortByRating = (prev, next) => next.rate - prev.rate;
 
-  if (prev.rate > next.rate) {
-    return -1;
-  } else if (prev.rate < next.rate) {
-    return 1;
-  } else {
-    return 0;
-  }
-};
-
-const sortByNumberComment = (prev, next) => {
-  //next.comments.lenght - prev.comments.lenght;
-
-  if (prev.comments.lenght > next.comments.lenght) {
-    return -1;
-  } else if (prev.comments.lenght < next.comments.lenght) {
-    return 1;
-  } else {
-    return 0;
-  }
-};
+const sortByNumberComment = (prev, next) => next.comments.length - prev.comments.length;
 
 export const selectRatedFilms = (items) => items.slice().sort(sortByRating);
 
