@@ -5,22 +5,24 @@ export const RenderPosition = {
   BEFOREEND: 'beforeend',
 };
 
-export const render = (container, child, place) => {
+export const render = (container, element, place = RenderPosition.BEFOREEND) => {
   if (container instanceof Abstract) {
     container = container.getElement();
   }
 
-  if (child instanceof Abstract) {
-    child = child.getElement();
+  if (element instanceof Abstract) {
+    element = element.getElement();
   }
 
   switch (place) {
     case RenderPosition.AFTERBEGIN:
-      container.prepend(child);
+      container.prepend(element);
       break;
     case RenderPosition.BEFOREEND:
-      container.append(child);
+      container.append(element);
       break;
+    default:
+      throw new Error('Unknown insert position selected');
   }
 };
 
@@ -31,19 +33,23 @@ export const createElement = (template) => {
   return newElement.firstChild;
 };
 
-/*export const replace = (newChild, oldChild) => {
+export const replace = (newChild, oldChild) => {
   if (oldChild instanceof Abstract) {
     oldChild = oldChild.getElement();
   }
+
   if (newChild instanceof Abstract) {
     newChild = newChild.getElement();
   }
+
   const parent = oldChild.parentElement;
+
   if (parent === null || oldChild === null || newChild === null) {
     throw new Error('Can\'t replace unexisting elements');
   }
+
   parent.replaceChild(newChild, oldChild);
-};*/
+};
 
 export const remove = (component) => {
   if (!(component instanceof Abstract)) {
@@ -53,3 +59,12 @@ export const remove = (component) => {
   component.getElement().remove();
   component.removeElement();
 };
+
+const sortByRating = (prev, next) => next.rate - prev.rate;
+
+const sortByNumberComment = (prev, next) => next.comments.length - prev.comments.length;
+
+export const selectRatedFilms = (items) => items.slice().sort(sortByRating);
+
+export const selectCommentFilm = (items) => items.slice().sort(sortByNumberComment);
+

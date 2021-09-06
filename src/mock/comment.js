@@ -1,5 +1,4 @@
-
-import {generateRandom} from '../utils/common';
+import {generateRandom} from '../utils/comon';
 import {generateDate} from '../utils/date';
 
 const EMOJIS = [

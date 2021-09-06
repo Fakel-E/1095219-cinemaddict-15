@@ -14,3 +14,4 @@ export default class SortMenu extends AbstractView {
     return createSortMenuTemplate();
   }
 }
+
