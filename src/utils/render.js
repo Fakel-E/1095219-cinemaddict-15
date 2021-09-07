@@ -1,4 +1,5 @@
 import Abstract from '../view/abstract';
+import dayjs from 'dayjs';
 
 export const RenderPosition = {
   AFTERBEGIN: 'afterbegin',
@@ -60,11 +61,49 @@ export const remove = (component) => {
   component.removeElement();
 };
 
-const sortByRating = (prev, next) => next.rate - prev.rate;
+export const sortByRating = (prev, next) => next.rate - prev.rate;
 
 const sortByNumberComment = (prev, next) => next.comments.length - prev.comments.length;
 
 export const selectRatedFilms = (items) => items.slice().sort(sortByRating);
 
 export const selectCommentFilm = (items) => items.slice().sort(sortByNumberComment);
+
+export const sortFilmByDate = (filmA, filmB) => dayjs(filmB.date).diff(dayjs(filmA.date));
+
+/*{
+  if (dateA === null && dateB === null) {
+    return 0;
+  }
+
+  if (dateA === null) {
+    return 1;
+  }
+
+  if (dateB === null) {
+    return -1;
+  }
+
+  return null;
+};*/
+
+/*export const sortFilmRate = (rateA, rateB) => {
+  const weight = getWeightForNullDate(taskA.dueDate, taskB.dueDate);
+
+  if (weight !== null) {
+    return weight;
+  }
+
+  return dayjs(taskA.dueDate).diff(dayjs(taskB.dueDate));
+};
+
+export const sortTaskDown = (taskA, taskB) => {
+  const weight = getWeightForNullDate(taskA.dueDate, taskB.dueDate);
+
+  if (weight !== null) {
+    return weight;
+  }
+
+  return dayjs(taskB.dueDate).diff(dayjs(taskA.dueDate));
+};*/
 
