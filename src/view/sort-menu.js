@@ -1,26 +1,18 @@
 import AbstractView from './abstract.js';
 import {SortType} from '../utils/comon';
 
-/*const createSortMenuTemplate = (sortDefault, sortDate, sortRate) => (
-  `<ul class="sort">
-    <li><a href="#" class="sort__button ${sortDefault ? 'sort__button--active' : ''}" data-sort-type="${SortType.DEFAULT}">Sort by default</a></li>
-    <li><a href="#" class="sort__button ${sortDate ? 'sort__button--active' : ''}" data-sort-type="${SortType.DATE}">Sort by date</a></li>
-    <li><a href="#" class="sort__button ${sortRate ? 'sort__button--active' : ''}" data-sort-type="${SortType.RATE}">Sort by rating</a></li>
-  </ul>`
-);*/
-
-const setActiveClassName = (condition) => condition ? 'sort__button--active' : '';
-
 const createSortItemTemplate = (sortType, isChecked) => `
   <li>
-    <a href="#${sortType}" class="sort__button ${setActiveClassName(isChecked)}" data-sort-type="${sortType}">
+    <a href="#${sortType}" class="sort__button ${isChecked ? 'sort__button--active' : ''}" data-sort-type="${sortType}">
       Sort by ${sortType}
     </a>
   </li>
 `;
 
 const createSortMenuTemplate = (activeSortType) => {
-  const sortItemsTemplate = Object.values(SortType).map((sortType) => createSortItemTemplate(sortType, sortType === activeSortType)).join('');
+  const sortItemsTemplate = Object
+    .values(SortType)
+    .map((sortType) => createSortItemTemplate(sortType, sortType === activeSortType)).join('');
   return `<ul class="sort">${sortItemsTemplate}</ul>`;
 };
 

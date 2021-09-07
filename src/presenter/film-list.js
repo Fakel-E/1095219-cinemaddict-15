@@ -73,7 +73,6 @@ export default class FilmList {
   }
 
   _sortFilms(sortType) {
-
     switch (sortType) {
       case SortType.DATE:
         this._films.sort(sortFilmByDate);
@@ -91,11 +90,11 @@ export default class FilmList {
   }
 
   _renderSort() {
-    const prevsortMenuView = this._sortMenuView;
+    const defaultSortMenuView = this._sortMenuView;
     this._sortMenuView = new SortMenuView(this._currentSortType);
 
-    if (prevsortMenuView) {
-      replace(this._sortMenuView, prevsortMenuView);
+    if (defaultSortMenuView) {
+      replace(this._sortMenuView, defaultSortMenuView);
     } else {
       render(this._mainContentView, this._sortMenuView, RenderPosition.AFTERBEGIN);
     }
@@ -117,8 +116,7 @@ export default class FilmList {
   }
 
   _renderTopFilms(from, to) {
-
-    if (!this._topRatedView.checkClass()) {
+    if (this._topRatedView.isEmptyContainer()) {
       selectRatedFilms(this._films)
         .slice(from, to)
         .forEach((film) => this._renderFilmCard(film, this._topRatedView.getContainer(), this._topRateFilmPresenterStorage));
@@ -126,8 +124,7 @@ export default class FilmList {
   }
 
   _renderCommentFilms(from, to) {
-
-    if (!this._topCommentView.checkClass()) {
+    if (this._topCommentView.isEmptyContainer()) {
       selectCommentFilm(this._films)
         .slice(from, to)
         .forEach((film) => this._renderFilmCard(film, this._topCommentView.getContainer(), this._topCommentFilmPresenterStorage));
@@ -167,7 +164,6 @@ export default class FilmList {
   }
 
   _render() {
-
     if (this._films.length === 0) {
       this._renderNoFilms();
       return;
@@ -188,6 +184,6 @@ export default class FilmList {
   _handleFilmChange(updatedFilm) {
     this._films = updateItemById(this._films, updatedFilm);
     this._sourcedFilms = updateItemById(this._sourcedFilms, updatedFilm);
-    this._filmCardPresenter[updatedFilm.id].init(updatedFilm);
+    this._filmCardPresenterStorage[updatedFilm.id].init(updatedFilm);
   }
 }
