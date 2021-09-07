@@ -1,6 +1,6 @@
 import ProfileView from './view/profile.js';
 import SiteMenuView from './view/site-menu.js';
-import SortMenuView from './view/sort-menu.js';
+//import SortMenuView from './view/sort-menu.js';
 import StatisticView from './view/statistic.js';
 import FilmListPresenter from './presenter/film-list.js';
 import {generateFilm} from './mock/film.js';
@@ -20,7 +20,7 @@ const siteStatisticElement = document.querySelector('.footer__statistics');
 
 render(siteHeaderElement, new ProfileView(), BEFOREEND);
 render(siteMainElement, new SiteMenuView(filters), BEFOREEND);
-render(siteMainElement, new SortMenuView(), BEFOREEND);
+//render(siteMainElement, new SortMenuView(), BEFOREEND);
 const filmPresenter = new FilmListPresenter(siteMainElement);
 filmPresenter.init(films);
 
